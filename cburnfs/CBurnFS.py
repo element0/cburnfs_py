@@ -3,7 +3,7 @@ from fs.base import FS
 from fs.info import Info
 from fs.errors import ResourceNotFound
 from fs.copy import copy_dir, copy_file
-from CBMetaFS import CBMetaFS
+
 from MulticelFS import MulticelFS
 from blackstrap import BlackstrapFS
 from Dcel import Dcel # factor out
@@ -22,7 +22,11 @@ else:
 #for merge lib (tbd): mergeinfo
 
 
-_version='0.14'
+_version='0.15'
+
+# 0.15
+
+# Trimming the fat. 
 
 # 0.14
 
