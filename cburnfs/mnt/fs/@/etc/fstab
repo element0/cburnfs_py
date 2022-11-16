@@ -1,0 +1,27 @@
+# # Cosm / Etc / FSTab
+
+# the .cosm/etc/fstab used by cburn is shared between hosts. The concept of 'localhost' is centric to a generic host model. A file url is relative to the generic host model, whereas a relative file path is relative to the working directory of cloudburner at runtime on each host.
+
+# experimental: include a hostname in the 'file://' url to limit the scope of a filepath to a specific host.
+
+# experimental: proxy the 'file' protocol and allow subdomain syntax to specify shares. The path component is relative to the share.
+
+# idea: make filepaths relative to the fstab's location, ie: for ./.cosm/etc/fstab the relative root is ../../../
+
+
+
+# KLUDGE ALLERT: shortid=<hide> works around shortcoming in Fudge star, which requires all entries to have the same fields if selected.
+# ie @/etc/fstab/*/mntopts.cskvp/shortid works if <hide> is present
+# ie @/etc/fstab/*/mntopts.cskvp/user errors
+# goal is to use 'nouser' or 'nogui' flag after Fudge is fixed.
+
+
+# file://raygan@raygan.com.cburn.io/ {cburnuser}/example cburnfs nouser,shortid=<hide>,idcard=localuser 0 0
+file://fs.localhost  {cburnuser}/example/  cburnfs user,shortid=root,idcard=localuser 0 0
+file://fs2.cburn.io  {cburnuser}/example/  cburnfs user,shortid=FishBo,idcard=localuser 0 0
+file://fs3.localhost  {cburnuser}/example/  cburnfs user,shortid=Bucket9,idcard=localuser 0 0
+#s3://swashbuckle/?endpoint_url=https://s3.us-west-000.backblazeb2.com    {cburnuser}/example/  cburnfs user,shortid=swash,idcard=aws-credentials 0 0
+# s3://cburn-demo/?endpoint_url=https://s3.us-west-000.backblazeb2.com   {cburnuser}/example/  cburnfs user,shortid=backbz,idcard=aws-credentials 0 0
+# file://cburnwebui.cburn.io/  {cburnuser}/example/  cburnfs nouser,shortid=<hide>,idcard=localuser 0 0
+
+# mntopt nouser keeps the mountpoint out of the user interface and should be used for the ui overlay only.
