@@ -9,6 +9,7 @@ from blackstrap import BlackstrapFS
 from Dcel import Dcel # factor out
 from APath import APath
 from Fudge import Fudge
+
 from copy import deepcopy
 import json
 import six

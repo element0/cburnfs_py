@@ -1,0 +1,3 @@
+six
+fs
+fs-s3fs
