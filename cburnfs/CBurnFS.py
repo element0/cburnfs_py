@@ -5,7 +5,7 @@ from fs.errors import ResourceNotFound
 from fs.copy import copy_dir, copy_file
 
 from MulticelFS import MulticelFS
-from blackstrap import BlackstrapFS
+# don't need? from blackstrap import BlackstrapFS
 from Dcel import Dcel # factor out
 from APath import APath
 from Fudge import Fudge
@@ -23,49 +23,11 @@ else:
 #for merge lib (tbd): mergeinfo
 
 
-_version='0.15'
+_version='0.16'
 
-# 0.15
+# Refactoring to simplify dependencies.
+# Goal is an independent, installable python module.
 
-# Trimming the fat. 
-
-# 0.14
-
-# added hiena_mp() parser to APath cosm
-#   to parse fstab.
-
-# 0.13
-
-# refactored Dcel, APath, MulticelFS
-# wip: change usage: CBurnFS(path)
-
-# works: getinfo(), readtext(), readbytes()
-# fixme: getinfo iterates over code block twice. why?
-
-# 0.12b
-# wip: propertyupdate() removeHost()
-# fixed: updateHosts() makedir() now ignores existing dirs
-# fixed: updateHosts() unquote %20 in path
-# fixed: removeHosts() unquote %20 in path
-
-# 0.11c
-# wip: propertyupdate()
-# removed Dcel.getinfo() debug output
-# add CBurnFS.updateHosts()
-# fixme: MulticelFS close constituents if needed
-# fixed typo
-# fixing propertyupdate updatehosts()
-
-# 0.10a
-# fixed missing json import
-# works with BlackstrapSvc
-# solely uses `cosm` dict to initialize
-
-# 0.9
-# added: CBurnFS subclasses FS
-# added: readbytes() via FS subclass
-# fixed: mergeinfo() mutable default argument caused getinfo() to report on different path
-        
 # usage:
 # cbfs = CBurnFS(bootpath)
 
