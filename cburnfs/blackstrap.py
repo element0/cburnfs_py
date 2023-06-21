@@ -84,6 +84,7 @@ class BlackstrapFS(OSFS):
         
         url = urlparse(urlstr)
         self.url = url
+        #shares = BlackstrapFS.__shares
         shares = BlackstrapFS.__shares
         shareid = url.netloc
         

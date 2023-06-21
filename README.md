@@ -1,29 +1,61 @@
 # Cloudburner FS
 
-Cloudburner FS (CburnFS) is a multi-layer, overlay file-system, whereeach layer originates from anywhere on the network or localhost.
+Cloudburner FS (CburnFS) is a multi-layer, overlay file-system, whereeach layer originates from anywhere on the network.
 
-Each layer can be written to. CburnFS tracks which files belong to which layer, syncs files which are shared between layers, and keeps other files separate.
+CburnFS tracks which files belong to which layer, syncs shared files between layers, and keeps other files separate.
 
-The layers are defined from `cburnfs` entries in an `fstab` file.
+Layers are defined from `cburnfs` entries in an `fstab` file in a boot filesystem.
 
-## Usage Example
 
-	from cburnfs import CBurnFS
-	from cburnfs import demo_blackstrap_config
-	cbfs = CBurnFS("file://fs.localhost")
+## Usage
 
-	cbfs.listdir("/")
+The easiest way to try it out:
+    
+    1) create a directory holding different mounted file systems.
+
+    ../mounts/
+        boot/
+        fs2/
+        fs3/
+
+    2) create a fstab file in the boot filesystem under '@/etc'.
+
+    mounts/boot/@/etc/fstab
+
+    ...
+
+    file://boot.localhost   /   user,shortid=boot   0   0
+    file://fs2.localhost    /   user,shortid=fs2    0   0
+    file://fs3.localhost    /   user,shortid=fs3    0   0
+
+    3) create a library directory, such as 'lib' or whatever,
+       and install cburnfs into it.
+
+    mkdir $LIB_LOCATION
+    ./$CBURN_GIT_ROOT/bin/install_at.sh $LIB_LOCATION 
+
+
+    4) in python
+
+    import sys; sys.path.append(LIB_LOCATION_HERE)
+    from cburnfs.cburnfs_tools import cburnfs_from_dir
+    cbfs = cburnfs_from_dir('mounts','localhost','boot')
+    cbfs.listdir('/')
+
+    =) you should see a listing of the filesystems combined.
 
 
 ## About BlackstrapFS
 
-When deveoping on the iPhone version of Jupyter notebooks (Carnets), 'file://' style URL's are relative to the sandboxed instance of the app, and change over successive app sessions. So BlackstrapFS maps a file system path to a file:// style URL and proxies the file service.
+When developing on iPhone using Jupyter notebooks (Carnets), 'file://' style URL's are relative to the sandboxed instance of the app, and change over repeated app sessions. BlackstrapFS maps a file system path to a file:// style URL and proxies the file service.
+
+    file://boot.localhost
 
 Url's must be mapped in advance to BlackstrapFS `shares` before initializing the CBurnFS file-system object.
 
-	see demo_blackstrap_config.py
+	see `demo_blackstrap_config.py`
 
-Once proxied, CburnFS can be initialized, and any file:// URL's used in the `fstab` file will be derived from the BlackstrapFS share names.
+Once proxied, CburnFS can be initialized, and `file://` URL's used in the `fstab` file will map to BlackstrapFS share names.
 
 
 
@@ -41,8 +73,5 @@ There is a `Make from Notebooks.ipynb` which generates the python files.
 The Dockerfile puts the `cburnfs` python package into the `site.USER_SITE` location.
 
 
-## TODO
-
-- Use `pip` to install into a system-wide location.
 
 

@@ -6,7 +6,7 @@ from CBMetaFS import CBMetaFS
 from fstab_hg import fstab_hg
 from cskvp_hg import cskvp_hg
 from urlparse_wrapper import urlparse_wrapper
-from fs_s3fs import S3FS
+# from fs_s3fs import S3FS # removed dependency for simplicity
 from fs import open_fs
 
 def say_hello():
@@ -46,7 +46,7 @@ apathRootCosm = {
         #'cascade' : CascadeCelFS,
         'cbmetafs': CBMetaFS,
         ## open_fs will receive a full URL with FS params url-encoded in query string. 
-        's3': open_fs,
+        # 's3': open_fs, # removed dependency for simpler installs
     },
     'tools': {
         'hiena': hiena_mp
