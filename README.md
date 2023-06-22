@@ -1,6 +1,6 @@
 # Cloudburner FS
 
-Cloudburner FS (CburnFS) is a multi-layer, overlay file-system, whereeach layer originates from anywhere on the network.
+Cloudburner FS (`CBurnFS`) is a multi-layer, overlay file-system, where each layer originates from anywhere on the network.
 
 CburnFS tracks which files belong to which layer, syncs shared files between layers, and keeps other files separate.
 
@@ -32,7 +32,8 @@ The easiest way to try it out:
        and install cburnfs into it.
 
     mkdir $LIB_LOCATION
-    ./$CBURN_GIT_ROOT/bin/install_at.sh $LIB_LOCATION 
+    cd $CBURN_GIT_ROOT
+    ./bin/install_at.sh $LIB_LOCATION 
 
 
     4) in python

@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
 # install_at.sh DEST_DIR
 # raygan
 # Installs cburnfs module under DEST_DIR.
 
-if (( $# < 1 )); then
+if [ $# -lt 1 ]; then
     echo "Usage: $0 DEST_DIR"
     exit -1
 fi
