@@ -46,6 +46,27 @@ The easiest way to try it out:
     =) you should see a listing of the filesystems combined.
 
 
+## Python Imports Caveat
+
+Due to the hack-ishly cobbled together `cburnfs` module,
+if you want to use the subcomponents -- which you will want to do! -- then you have to import them thusly:
+
+    import cburnfs.Dcel
+    import cburnfs.APath
+    import cburnfs.Fudge
+    from Dcel import Dcel
+    from APath import APath
+    from Fudge import Fudge
+
+Looks shitty, but turns out smooth. There are dependencies between the components, which have knowledge of each other but not of the cburnfs module. The above imports will mean that type(Dcel) will evaluate the same inside your code as is does inside the APath and Fudge classes -- critical since each class wraps the other.
+
+    a = Dcel(service,address)
+    b = APath(a)
+    c = Fudge(b)
+
+(tested in Python 3.11.3)
+
+
 ## About BlackstrapFS
 
 When developing on iPhone using Jupyter notebooks (Carnets), 'file://' style URL's are relative to the sandboxed instance of the app, and change over repeated app sessions. BlackstrapFS maps a file system path to a file:// style URL and proxies the file service.
