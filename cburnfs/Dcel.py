@@ -424,6 +424,13 @@ class Dcel(FS):
     
     # Info helpers
     
+    def abspath(self,path):
+        if path == None:
+            return self.address
+        if path == '/':
+            return path
+        return self.address + '/' + path
+    
     @property
     def hostname(self):
         try:
@@ -435,11 +442,7 @@ class Dcel(FS):
                 path=None,
                 namespaces=None
                ):
-        if path is None:
-            path = self.address
-        else:
-            if path != "/":
-                path = self.address+'/'+path
+        path = self.abspath(path)
         info = self.service.getinfo(path,namespaces)
         # MUST allow pyfilesystem conformant subclasses
         # to omit geturl().
@@ -454,19 +457,11 @@ class Dcel(FS):
         return Info(raw)
     
     def listdir(self,path=None):
-        if path is None:
-            path = self.address
-        else:
-            if path != '/':
-                path = self.address+'/'+path
+        path = self.abspath(path)
         return self.service.listdir(path)
     
     def isdir(self,path=None):
-        if path is None:
-            path = self.address
-        else:
-            if path != '/':
-                path = self.address+'/'+path
+        path = self.abspath(path)
         return self.service.isdir(path)
     
     def openbin(self,
@@ -475,30 +470,22 @@ class Dcel(FS):
             buffering=-1,
             **options):
         # Open a binary file.
-        if path is None:
-            path = self.address
-        else:
-            path = self.address+'/'+path
+        path = self.abspath(path)
         return self.service.openbin(
             path,
             mode,
             buffering)
     
     def readbytes(self, path=None):
-        if path is None:
-            path = self.address
-        else:
-            path = self.address+'/'+path
+        path = self.abspath(path)
         return self.service.readbytes(path)
 
     def readtext(self, path=None):
-        if path is None:
-            path = self.address
-        else:
-            path = self.address+'/'+path
+        path = self.abspath(path)
         return self.service.readtext(path)
     
     def setinfo(self,path,info): # Set resource information.
+        path = self.abspath(path)
         pass
 
     def makedir(self,*args,**kwargs):
