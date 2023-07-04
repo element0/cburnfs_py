@@ -429,7 +429,7 @@ class Dcel(FS):
             return self.address
         if path == '/':
             return path
-        return self.address + '/' + path
+        return self.address + '/' + path.lstrip('/')
     
     @property
     def hostname(self):
