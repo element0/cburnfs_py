@@ -438,7 +438,8 @@ class Dcel(FS):
         if path is None:
             path = self.address
         else:
-            path = self.address+'/'+path
+            if path != "/":
+                path = self.address+'/'+path
         info = self.service.getinfo(path,namespaces)
         # MUST allow pyfilesystem conformant subclasses
         # to omit geturl().
@@ -456,7 +457,8 @@ class Dcel(FS):
         if path is None:
             path = self.address
         else:
-            path = self.address+'/'+path
+            if path != '/':
+                path = self.address+'/'+path
         return self.service.listdir(path)
     
     def isdir(self,path=None):
