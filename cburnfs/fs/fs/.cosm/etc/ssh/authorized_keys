@@ -1,0 +1,3 @@
+#!fudge .cosm/users/goodguys.match/id/ssh/*key.pub
+
+# authorized public keys

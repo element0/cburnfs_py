@@ -1,6 +1,7 @@
 from fs.base import FS
 from fs.info import Info
 from fs.errors import NoURL
+from fs.path import normpath
 from inspect import isclass, isfunction, ismethod
 from urllib.parse import urlparse
 from mergeinfo import mergeinfo
@@ -462,7 +463,8 @@ class Dcel(FS):
         if path is None:
             path = self.address
         else:
-            path = self.address+'/'+path
+            if path != '/':
+                path = self.address+'/'+path
         return self.service.isdir(path)
     
     def openbin(self,
