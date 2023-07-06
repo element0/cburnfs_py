@@ -496,6 +496,11 @@ class Dcel(FS):
         
     def removedir(self,*args,**kwargs):
         self.service(*args,**kwargs)
+        
+    def writetext(self, path=None, contents='', encoding='utf-8',
+                  errors=None, newline=''):
+        path = self.abspath(path)
+        self.service.writetext(path,contents,encoding,errors,newline)
 
     ### Additional Methods
     
