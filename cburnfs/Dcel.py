@@ -489,13 +489,13 @@ class Dcel(FS):
         pass
 
     def makedir(self,*args,**kwargs):
-        self.service(*args,**kwargs)
+        self.service.makedir(*args,**kwargs)
         
     def remove(self,*args,**kwargs):
-        self.service(*args,**kwargs)
+        self.service.remove(*args,**kwargs)
         
     def removedir(self,*args,**kwargs):
-        self.service(*args,**kwargs)
+        self.service.removedir(*args,**kwargs)
         
     def writetext(self, path=None, contents='', encoding='utf-8',
                   errors=None, newline=''):
