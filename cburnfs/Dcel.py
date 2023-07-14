@@ -446,7 +446,10 @@ class Dcel(FS):
         info = self.service.getinfo(path,namespaces)
         # MUST allow pyfilesystem conformant subclasses
         # to omit geturl().
-        rooturl = self.service.__rooturl
+        try:
+            rooturl = self.service.__rooturl
+        except:
+            rooturl = None
         if not type(rooturl) is str:
             rooturl = None
         if not rooturl is None:
@@ -484,9 +487,9 @@ class Dcel(FS):
         path = self.abspath(path)
         return self.service.readtext(path)
     
-    def setinfo(self,path,info): # Set resource information.
+    def setinfo(self,path,info):
         path = self.abspath(path)
-        pass
+        return self.service.setinfo(path,info)
 
     def makedir(self,*args,**kwargs):
         self.service.makedir(*args,**kwargs)

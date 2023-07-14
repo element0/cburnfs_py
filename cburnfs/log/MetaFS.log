@@ -1,0 +1,7 @@
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f3db17e45e0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f32fded25e0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f42270f65e0>

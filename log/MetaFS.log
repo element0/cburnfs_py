@@ -1,0 +1,27 @@
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f0350a52d30>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7ff3b6faaf10>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f369ea7b610>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
+DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7fde4f127c70>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f7d4dd28490>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f7d4dd564f0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fc8f2a08430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fc8f2a39280>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f811afc5430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f811afdcdc0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f95be258490>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f3fa24f05e0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f46d235b580>

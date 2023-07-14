@@ -5,10 +5,11 @@ from fs.errors import ResourceNotFound
 from fs.copy import copy_dir, copy_file
 
 from MulticelFS import MulticelFS
-# don't need? from blackstrap import BlackstrapFS
-from Dcel import Dcel # factor out
+from Dcel import Dcel # TODO: factor out
 from APath import APath
 from Fudge import Fudge
+from metafs import MetaFS
+from metafs_proxy import MetaFSProxy
 
 from copy import deepcopy
 import json
@@ -23,8 +24,11 @@ else:
 #for merge lib (tbd): mergeinfo
 
 
-_version='0.16'
+_version='0.18'
 
+# Adding MetaFSProxy to store custom metadata.
+
+# --- version 0.16 goals INHERIT
 # Refactoring to simplify dependencies.
 # Goal is an independent, installable python module.
 
@@ -46,7 +50,12 @@ class CBurnFS(APath):
         boot_root = boot/'/'
         fstab = boot/FSTAB_RELPATH
         cels = []
+        metafs_conf = dict()
         for ea in fstab:
+            """
+            The fstab parser is located in the APath Cosm.
+            It might not handle tabs. Try to use spaces only.
+            """
             if ea/'vfstype' == 'cburnfs':
                 urlstr = ea/'spec'
                 _scheme = ea/'spec.url/scheme'
@@ -58,16 +67,43 @@ class CBurnFS(APath):
                                 service_class=service_class) ]
                 except:
                     pass
+            if ea/'vfstype' == 'cburnfs-meta':
+                '''
+                The last 'cburn-metafs' defined will succeed.
+                '''
+                host_and_port = str(ea/'spec.url/netloc').split(':')
+                metafs_conf['REDIS_CONTAINER_NAME'] = host_and_port[0]
+                if len(host_and_port) > 1:
+                    metafs_conf['REDIS_CONTAINER_PORT'] = int(host_and_port[1])
+                else:
+                    metafs_conf['REDIS_CONTAINER_PORT'] = 6379
+                try:
+                    metafs_conf['USERPUBLICID'] = str(ea/'mntopts.cskvp/userid')
+                except:
+                    metafs_conf['USERPUBLICID'] = 'unset'
+                try:
+                    metafs_conf['USERHOMENAME'] = str(ea/'mntopts.cskvp/userhome')
+                except:
+                    metafs_conf['USERHOMENAME'] = 'unset'
+                try:
+                    metafs_conf['USERFSURL'] = str(ea/'mntopts.cskvp/userurl')
+                except:
+                    metafs_conf['UESRFSURL'] = 'unset'
+                
         root = Dcel(
             service_class=MulticelFS,
             address=cels
         )
-        return root
+        meta = MetaFS(config=metafs_conf)
+        return root, meta
                 
     def __init__(self, bootpath: str):
         self._bootpath = bootpath
-        root = self.__loadFstab(bootpath)
-        super().__init__(root)
+        root, meta = self.__loadFstab(bootpath)
+        self.metafs = meta
+        metaproxy = MetaFSProxy(root,meta)
+        super().__init__(Dcel(service=metaproxy))
+        self._init_listener_system()
         
     def _reinit(self):
         print(f"CBurnFS::_reinit() called.")
@@ -75,7 +111,7 @@ class CBurnFS(APath):
         super()._reinit(root)
         
         
-    # updater junk
+    # updater magic
     def updateHosts(self,path,hosts):
         
         dcel = self.target
@@ -179,3 +215,34 @@ class CBurnFS(APath):
                 response[mod] = self.propertyupdate(path,rq[mod])
         return response
     
+    # ---- listener notification system ----
+    
+    def _init_listener_system(self):
+        self._flow = {'listen':dict()}
+        
+    def add_listener(self,tag,listener):
+        tags = self._flow['listen']
+        if not tag in tags:
+            tags[tag] = []
+        tags[tag].append = listener
+        
+    def remove_listener(self,tag,listener):
+        tags = self._flow['listen']
+        if not tag in tags:
+            return
+        if listener in tags[tag]:
+            tags[tag].remove(listener)
+            
+    # ---- FS shadow methods ----
+    
+    def writetext(self, path=None, contents='', encoding='utf-8',
+                  errors=None, newline=''):
+        # dirty hook to avoid fleshing out listener system
+        if path == '/@/etc/fstab':
+            old_content = self.readtext(path)
+        super().writetext(path,contents,encoding,errors,newline)
+        if not old_content == contents:
+            self._reinit()
+            
+        
+        
