@@ -25,3 +25,23 @@ DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan
 DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f3fa24f05e0>
 DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
 DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f46d235b580>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f49c8e15430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fc97d444430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f2969dbe550>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f6952774430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f2bbb053430>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fcdd94e83d0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f7b14fde550>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7f07e6c70550>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fcf72e89550>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:'raygan@raygan.com':'raygan-home':'https://raygan-raygan-com.home.laydbug.io'
+DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x7fd394fea580>

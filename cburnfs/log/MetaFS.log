@@ -5,3 +5,5 @@ DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-ho
 DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f32fded25e0>
 DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:raygan@raygan.com:raygan-home:osfs://example.local/home/raygan
 DEBUG:root:Redis connection configured. self.redis: <redis_herring.Redis object at 0x7f42270f65e0>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>

@@ -20,6 +20,7 @@ if six.PY2:
     from urllib import unquote
 else:
     from urllib.parse import unquote
+from threading import Thread
 
 #for merge lib (tbd): mergeinfo
 
@@ -41,6 +42,32 @@ def init_dcel_from_url(boot,url):
 
 FSTAB_RELPATH = '@/etc/fstab'
 FSTAB_ABSPATH = '/@/etc/fstab'
+
+def metafs_set_progress(metafs, path, functionName, host, status):
+    info = metafs.getinfo(path).raw
+    info.update({"progress":{functionName:{host:status}}})
+    metafs.setinfo(path,info)
+    
+def metafs_remove_progress(metafs, path, functionName, host):
+    info = metafs.getinfo(path).raw
+    del(info['progress'][functionName][host])
+    if len(info['progress'][functionName]) == 0:
+        del(info['progress'][functionName])
+    if len(info['progress']) == 0:
+        del(info['progress'])
+    metafs.setinfo(path,info)
+
+def copy_executor(metafs, path, host, copy_func, fs1, path1, fs2, path2):
+    metafs_set_progress(metafs, path, "updateHosts", host, "pending")
+    copy_func(fs1, path1, fs2, path2)
+    metafs_remove_progress(metafs, path, "updateHosts", host)
+    
+    
+def remover_executor(metafs, path, host, remover_func, func_self, target_path):
+    metafs_set_progress(metafs, path, "removeHosts", host, "pending")
+    remover_func(target_path)
+    metafs_remove_progress(metafs, path, "removeHosts", host)
+
 
 class CBurnFS(APath):        
     
@@ -112,9 +139,12 @@ class CBurnFS(APath):
         
         
     # updater magic
+        
     def updateHosts(self,path,hosts):
         
-        dcel = self.target
+        metaproxy = self.target.service
+        metafs = metaproxy.metafs
+        dcel = metaproxy.targetfs   # note: unsyncs metafs until next getinfo()
         svc = dcel.service
         
         _path = unquote(path)
@@ -132,19 +162,28 @@ class CBurnFS(APath):
                 
                 # copy path from multifs
                 #   to path in host fs
-                
                 if svc.getinfo(_path).is_dir:
-                    copy_dir(svc,_path,destDirFS,pathBase)
+                    copy_func = copy_dir
                 else:
-                    copy_file(svc,_path,destDirFS,pathBase)            
-            
+                    copy_func = copy_file
+                    
+                # WIP This assumes that svc and destDirFS
+                # are thread-safe.
+                copy_thread = Thread(target=copy_executor,
+                    args=[metafs,path,host,
+                          copy_func,svc,_path,destDirFS,pathBase]
+                )
+                copy_thread.start()
 
     def removeHosts(self,path,hosts):
         
+        metaproxy = self.target.service
+        metafs = metaproxy.metafs
+        dcel = metaproxy.targetfs   # note: unsyncs metafs until next getinfo()
+        svc = dcel.service
+        
         _path = unquote(path)
         pathDir,pathBase = split(_path)
-        dcel = self.target
-        svc = dcel.service
         
         if type(svc) == MulticelFS:   
             for host in hosts:
@@ -152,9 +191,18 @@ class CBurnFS(APath):
                 dest = svc.get_dcel_by_host(host)
         
                 if dest.getinfo(_path).is_dir:
-                    dest.service.removetree(_path)
+                    remover_func = dest.service.removetree
                 else:
-                    dest.service.remove(_path)
+                    remover_func = dest.service.remove
+                    
+                # WIP This assumes that dest.service
+                # is thread-safe.
+                remover_thread = Thread(target=remover_executor,
+                    args=[metafs,path,host,
+                          remover_func,dest.service,_path]
+                )
+                remover_thread.start()
+                    
                     
     def urlListFromDict(self, path, ob) -> list:
         dirlist = list()
@@ -168,8 +216,6 @@ class CBurnFS(APath):
     def updateMultiValue(self, path, multiValue):
         """multiValue should already have been parsed."""
         _path = unquote(path)
-        target = self.target
-        svc = target.service
         actionPairs = self.urlListFromDict(_path, multiValue)
         root_fu = Fudge(self)
         for url,val in actionPairs:
@@ -238,11 +284,9 @@ class CBurnFS(APath):
     def writetext(self, path=None, contents='', encoding='utf-8',
                   errors=None, newline=''):
         # dirty hook to avoid fleshing out listener system
-        if path == '/@/etc/fstab':
+        if path == FSTAB_ABSPATH:
             old_content = self.readtext(path)
-        super().writetext(path,contents,encoding,errors,newline)
         if not old_content == contents:
+            super().writetext(path,contents,encoding,errors,newline)
             self._reinit()
-            
-        
         
