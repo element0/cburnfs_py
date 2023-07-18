@@ -520,4 +520,14 @@ class Dcel(FS):
     def path_lookup(self,path):
         return self._pathwalk(path)
     
+    ### Custom Request Processing
+    
+    def processRequest(self,path,rq):
+        if hastattr(self.service,"processRequest"):
+            try:
+                response = self.service.processRequest(path,rq)
+            except Exception as e:
+                return {'Dcel::processRequest':{'service error':str(e)}}
+            return response
+    
     
