@@ -45,14 +45,14 @@ FSTAB_ABSPATH = '/@/etc/fstab'
 
 def metafs_set_progress(metafs, path, functionName, host, status):
     info = metafs.getinfo(path).raw
-    info.update({"progress":{functionName:{host:status}}})
+    info.update({"progress":{host:{functionName:status}}})
     metafs.setinfo(path,info)
     
 def metafs_remove_progress(metafs, path, functionName, host):
     info = metafs.getinfo(path).raw
-    del(info['progress'][functionName][host])
-    if len(info['progress'][functionName]) == 0:
-        del(info['progress'][functionName])
+    del(info['progress'][host][functionName])
+    if len(info['progress'][host]) == 0:
+        del(info['progress'][host])
     if len(info['progress']) == 0:
         del(info['progress'])
     metafs.setinfo(path,info)
@@ -286,7 +286,10 @@ class CBurnFS(APath):
         # dirty hook to avoid fleshing out listener system
         if path == FSTAB_ABSPATH:
             old_content = self.readtext(path)
-        if not old_content == contents:
+            if not old_content == contents:
+                super().writetext(path,contents,encoding,errors,newline)
+                self._reinit()
+        else:
             super().writetext(path,contents,encoding,errors,newline)
-            self._reinit()
-        
+
+            
