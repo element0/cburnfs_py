@@ -43,6 +43,9 @@ def init_dcel_from_url(boot,url):
 FSTAB_RELPATH = '@/etc/fstab'
 FSTAB_ABSPATH = '/@/etc/fstab'
 
+# Configure the MEGA-KLUDGE!
+SPECIAL_PATH_HOST_SHORTID_MAP = '/@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}' 
+
 def metafs_set_progress(metafs, path, functionName, host, status):
     info = metafs.getinfo(path).raw
     info.update({"progress":{host:{functionName:status}}})
@@ -78,6 +81,7 @@ class CBurnFS(APath):
         fstab = boot/FSTAB_RELPATH
         cels = []
         metafs_conf = dict()
+        host_shortname_map = dict()
         for ea in fstab:
             """
             The fstab parser is located in the APath Cosm.
@@ -90,10 +94,13 @@ class CBurnFS(APath):
                     _scheme = 'file'
                 service_class = boot._apath.cosm['services'][str(_scheme)].value
                 try:
-                    cels += [ Dcel(address=str(urlstr), 
-                                service_class=service_class) ]
+                    cels += [ Dcel(address=str(urlstr), service_class=service_class) ]
                 except:
                     pass
+                try:
+                    host_shortname_map[ea/'spec'] = ea/'mntopts/shortid'
+                except:
+                    pass 
             if ea/'vfstype' == 'cburnfs-meta':
                 '''
                 The last 'cburn-metafs' defined will succeed.
@@ -122,6 +129,7 @@ class CBurnFS(APath):
             address=cels
         )
         meta = MetaFS(config=metafs_conf)
+        self.host_shortname_map = host_shortname_map
         return root, meta
                 
     def __init__(self, bootpath: str):
@@ -280,6 +288,20 @@ class CBurnFS(APath):
             tags[tag].remove(listener)
             
     # ---- FS shadow methods ----
+    def readbytes(self, path=None):
+        # MEGA-KLUDGE!
+        if path == SPECIAL_PATH_HOST_SHORTID_MAP:
+            boot = Fudge(self._bootpath)
+            # FIXME: must force load of root - consider this a bug
+            boot_root = boot/'/'
+            fstab = boot/FSTAB_RELPATH
+            host_shortid_map = {
+                str(ea/'spec'): str(ea/'mntopts.cskvp/shortid')
+                for ea in fstab
+            }
+            return bytes(json.dumps(host_shortid_map), encoding='utf-8')
+        else:
+            return super().readbytes(path)
     
     def writetext(self, path=None, contents='', encoding='utf-8',
                   errors=None, newline=''):
