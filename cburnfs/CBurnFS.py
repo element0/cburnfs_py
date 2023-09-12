@@ -44,7 +44,8 @@ FSTAB_RELPATH = '@/etc/fstab'
 FSTAB_ABSPATH = '/@/etc/fstab'
 
 # Configure the MEGA-KLUDGE!
-SPECIAL_PATH_HOST_SHORTID_MAP = '/@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}' 
+# NOTE: the algorithm removes leading '/' from the input to be matched.
+SPECIAL_PATH_HOST_SHORTID_MAP = '@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}' 
 
 def metafs_set_progress(metafs, path, functionName, host, status):
     info = metafs.getinfo(path).raw
@@ -290,7 +291,8 @@ class CBurnFS(APath):
     # ---- FS shadow methods ----
     def readbytes(self, path=None):
         # MEGA-KLUDGE!
-        if path == SPECIAL_PATH_HOST_SHORTID_MAP:
+        # NOTE: the algorithm removes leading '/' from the input to be matched.
+        if path.lstrip('/') == SPECIAL_PATH_HOST_SHORTID_MAP:
             boot = Fudge(self._bootpath)
             # FIXME: must force load of root - consider this a bug
             boot_root = boot/'/'
