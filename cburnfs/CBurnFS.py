@@ -293,7 +293,7 @@ class CBurnFS(APath):
         # MEGA-KLUDGE!
         # NOTE: the algorithm removes leading '/' from the input to be matched.
         if path.lstrip('/') == SPECIAL_PATH_HOST_SHORTID_MAP:
-            boot = Fudge(self._bootpath)
+            boot = Fudge(self)
             # FIXME: must force load of root - consider this a bug
             boot_root = boot/'/'
             fstab = boot/FSTAB_RELPATH
