@@ -323,14 +323,19 @@ class CBurnFS(APath):
         # MEGA-KLUDGE!
         # NOTE: the algorithm removes leading '/' from the input to be matched.
         if path.lstrip('/') == SPECIAL_PATH_HOST_SHORTID_MAP:
+            self.logging.debug(f'CBurnFS: readbytes: cleaned path: {path.lstrip("/")}')
             boot = Fudge(self)
+            self.logging.debug('CBurnFS: Fudge booted')
             # FIXME: must force load of root - consider this a bug
             boot_root = boot/'/'
+            self.logging.debug('CBurnFS: locating fstab')
             fstab = boot/FSTAB_RELPATH
+            self.logging.debug('CBurnFS: building `host_shortid_map`')
             host_shortid_map = {
                 str(ea/'spec'): str(ea/'mntopts.cskvp/shortid')
                 for ea in fstab
             }
+            self.logging.debug('CBurnFS: built `host_shortid_map`')
             return bytes(json.dumps(host_shortid_map), encoding='utf-8')
         else:
             return super().readbytes(path)
