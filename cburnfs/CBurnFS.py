@@ -21,11 +21,25 @@ if six.PY2:
 else:
     from urllib.parse import unquote
 from threading import Thread
+import logging
+
+
+def setup_logger():
+    default_logging = logging.getLogger('CBurnFS-py')
+    default_logging.setLevel(logging.DEBUG)
+    ch = logging.StreamHandler()
+    ch.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+    ch.setFormatter(formatter)
+    default_logging.addHandler(ch)
+    
+setup_logger()
+default_logging = logging.getLogger('CBurnFS-py')
 
 #for merge lib (tbd): mergeinfo
 
 
-_version='0.18'
+_version='0.19'
 
 # Adding MetaFSProxy to store custom metadata.
 
@@ -73,7 +87,7 @@ def remover_executor(metafs, path, host, remover_func, func_self, target_path):
     metafs_remove_progress(metafs, path, "removeHosts", host)
 
 
-class CBurnFS(APath):        
+class CBurnFS(APath):
     
     def __loadFstab(self, bootpath: str):
         boot = Fudge(bootpath)
@@ -132,10 +146,25 @@ class CBurnFS(APath):
         meta = MetaFS(config=metafs_conf)
         self.host_shortname_map = host_shortname_map
         return root, meta
-                
-    def __init__(self, bootpath: str):
-        self._bootpath = bootpath
-        root, meta = self.__loadFstab(bootpath)
+              
+    def __new__(cls,
+             addr=None,
+             servicename=None,
+             parent=None,
+             logging=default_logging
+            ):
+        return super().__new__(cls)
+    
+    def __init__(self,
+             addr=None,
+             servicename=None,
+             parent=None,
+             logging=default_logging
+            ):
+    #def __init__(self, bootpath: str, logging):
+        self.logging = logging
+        self._bootpath = addr
+        root, meta = self.__loadFstab(addr)
         self.metafs = meta
         metaproxy = MetaFSProxy(root,meta)
         super().__init__(Dcel(service=metaproxy))
@@ -290,6 +319,7 @@ class CBurnFS(APath):
             
     # ---- FS shadow methods ----
     def readbytes(self, path=None):
+        self.logging.debug(f'readbytes({path})')
         # MEGA-KLUDGE!
         # NOTE: the algorithm removes leading '/' from the input to be matched.
         if path.lstrip('/') == SPECIAL_PATH_HOST_SHORTID_MAP:
