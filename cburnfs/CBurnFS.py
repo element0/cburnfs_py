@@ -161,7 +161,6 @@ class CBurnFS(APath):
              parent=None,
              logging=default_logging
             ):
-    #def __init__(self, bootpath: str, logging):
         self.logging = logging
         self._bootpath = addr
         root, meta = self.__loadFstab(addr)
@@ -172,7 +171,7 @@ class CBurnFS(APath):
         
     def _reinit(self):
         print(f"CBurnFS::_reinit() called.")
-        root = self.__loadFstab(self._bootpath)
+        root, meta = self.__loadFstab(self._bootpath)
         super()._reinit(root)
         
         
@@ -334,6 +333,7 @@ class CBurnFS(APath):
             host_shortid_map = {
                 str(ea/'spec'): str(ea/'mntopts.cskvp/shortid')
                 for ea in fstab
+                if ea/'vfstype' == 'cburnfs'
             }
             self.logging.debug('CBurnFS: built `host_shortid_map`')
             return bytes(json.dumps(host_shortid_map), encoding='utf-8')
