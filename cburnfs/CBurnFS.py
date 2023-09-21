@@ -3,6 +3,7 @@ from fs.base import FS
 from fs.info import Info
 from fs.errors import ResourceNotFound
 from fs.copy import copy_dir, copy_file
+from fs.walk import Walker
 
 from MulticelFS import MulticelFS
 from Dcel import Dcel # TODO: factor out
@@ -10,6 +11,7 @@ from APath import APath
 from Fudge import Fudge
 from metafs import MetaFS
 from metafs_proxy import MetaFSProxy
+from mergeinfo import mergeinfo
 
 from copy import deepcopy
 import json
@@ -316,7 +318,30 @@ class CBurnFS(APath):
         if listener in tags[tag]:
             tags[tag].remove(listener)
             
+    # ---- Metadata Methods ----
+    
+    def disk_usage(self, path='/'):
+        '''Estimate disk usage in bytes'''
+        if self.isdir(path):
+            subdir = self.opendir(path)
+            w = Walker.bind(subdir)
+            return sum([ info.size for _,info in w.info(namespaces=['details']) ])
+        else:
+            return self.getsize(path)
+            
     # ---- FS shadow methods ----
+    def getinfo(self, path='/', namespaces=['basic']):
+        if 'cburnfs' in namespaces:
+            cburnfs_info = {
+                'cburnfs': {
+                    'size': self.disk_usage(path)
+                }
+            }
+            other_info = super().getinfo(path, namespaces).raw
+            merged_info = mergeinfo(cburnfs_info, other_info)
+            return Info(merged_info)
+        return super().getinfo(path, namespaces)
+        
     def readbytes(self, path=None):
         self.logging.debug(f'readbytes({path})')
         # MEGA-KLUDGE!
