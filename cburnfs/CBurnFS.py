@@ -331,6 +331,8 @@ class CBurnFS(APath):
             
     # ---- FS shadow methods ----
     def getinfo(self, path='/', namespaces=['basic']):
+        if namespaces == None:
+            return super().getinfo(path)
         if 'cburnfs' in namespaces:
             cburnfs_info = {
                 'cburnfs': {
