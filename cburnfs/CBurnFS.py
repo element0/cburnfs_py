@@ -321,11 +321,23 @@ class CBurnFS(APath):
     # ---- Metadata Methods ----
     
     def disk_usage(self, path='/'):
-        '''Estimate disk usage in bytes'''
+        '''
+        Estimate disk usage in bytes.
+        
+        WARNING: Skip 'permission' denied and other errors.
+        
+        This might not be a bad thing. If the user doesn't have permission,
+        they probably don't have business managing those files.
+        
+        Other errors? Maybe need to handle them.
+        '''
         if self.isdir(path):
             subdir = self.opendir(path)
             w = Walker.bind(subdir)
-            return sum([ info.size for _,info in w.info(namespaces=['details']) ])
+            return sum([ info.size
+                        for _,info in w.info(namespaces=['details'],
+                                             ignore_errors=True
+                                            ) ])
         else:
             return self.getsize(path)
             
