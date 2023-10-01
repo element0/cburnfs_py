@@ -1,8 +1,10 @@
 from fs.osfs import OSFS
 from fs.errors import CreateFailed
+from fs.info import Info
 from socket import gethostname
 from urllib.parse import urlparse
 import six
+from os import statvfs
 
 
 
@@ -84,7 +86,6 @@ class BlackstrapFS(OSFS):
         
         url = urlparse(urlstr)
         self.url = url
-        #shares = BlackstrapFS.__shares
         shares = BlackstrapFS.__shares
         shareid = url.netloc
         
@@ -94,7 +95,26 @@ class BlackstrapFS(OSFS):
         except:
             raise CreateFailed(shareid)
         
+        self.__addr = realpath
         super().__init__(realpath,*args)
+        
+    def getinfo(self, path='/',namespaces=None):
+        info_raw = super().getinfo(path, namespaces).raw
+        if namespaces != None and 'limits' in namespaces:
+            st = statvfs(self.__addr)
+            if st != None:
+                bsize = st.f_bsize
+                total = bsize * st.f_blocks
+                used = total - (bsize * st.f_bfree)
+                free = bsize * st.f_bavail
+                info_raw['limits'] = {
+                    self._urlstr: {
+                        'total': total,
+                        'used': used,
+                        'free': free                        
+                    }
+                }
+        return Info(info_raw)
         
         
     def geturl(self,path):

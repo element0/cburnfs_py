@@ -87,8 +87,7 @@ def remover_executor(metafs, path, host, remover_func, func_self, target_path):
     metafs_set_progress(metafs, path, "removeHosts", host, "pending")
     remover_func(target_path)
     metafs_remove_progress(metafs, path, "removeHosts", host)
-
-
+    
 class CBurnFS(APath):
     
     def __loadFstab(self, bootpath: str):
@@ -115,7 +114,7 @@ class CBurnFS(APath):
                 except:
                     pass
                 try:
-                    host_shortname_map[ea/'spec'] = ea/'mntopts/shortid'
+                    host_shortname_map[urlstr] = ea/'mntopts.cskvp/shortid'
                 except:
                     pass 
             if ea/'vfstype' == 'cburnfs-meta':
