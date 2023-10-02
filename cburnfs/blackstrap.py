@@ -106,7 +106,8 @@ class BlackstrapFS(OSFS):
                 bsize = st.f_bsize
                 total = bsize * st.f_blocks
                 used = total - (bsize * st.f_bfree)
-                free = bsize * st.f_bavail
+                # free = bsize * st.f_bavail
+                free = total - used
                 info_raw['limits'] = {
                     self._urlstr: {
                         'total': total,
