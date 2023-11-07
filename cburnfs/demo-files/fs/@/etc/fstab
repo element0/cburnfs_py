@@ -17,10 +17,10 @@
 
 
 # file://raygan@raygan.com.cburn.io/ {cburnuser}/example cburnfs nouser,shortid=<hide>,idcard=localuser 0 0
-file://fs.localhost  {cburnuser}/example/  cburnfs user,shortid=root,idcard=localuser 0 0
+file://fs.localhost  /  cburnfs user,shortid=root,idcard=localuser 0 0
 file://fs2.cburn.io  {cburnuser}/example/  cburnfs user,shortid=FishBo,idcard=localuser 0 0
 file://fs3.localhost  {cburnuser}/example/  cburnfs user,shortid=Bucket9,idcard=localuser 0 0
-file://fs4.localhost  {cburnuser}/example/  cburnfs user,shortid=Bucket9,idcard=localuser 0 0
+file://fs4.localhost  {cburnuser}/example/  cburnfs user,shortid=Bucket10,idcard=localuser 0 0
 
 #s3://swashbuckle/?endpoint_url=https://s3.us-west-000.backblazeb2.com    {cburnuser}/example/  cburnfs user,shortid=swash,idcard=aws-credentials 0 0
 # s3://cburn-demo/?endpoint_url=https://s3.us-west-000.backblazeb2.com   {cburnuser}/example/  cburnfs user,shortid=backbz,idcard=aws-credentials 0 0

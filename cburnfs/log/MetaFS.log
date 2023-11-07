@@ -19,3 +19,264 @@ DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-
 DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x1312cbe80>
 DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
 DEBUG:root:Redis connection _configured. self.redis: <redis_herring.Redis object at 0x12a1ab220>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:reabytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:reabytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:reabytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:reabytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:hello
+DEBUG:root:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:hello
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:debug hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:my_stupid_logger:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:CBurnFS-py:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
+DEBUG:my_stupid_logger:readbytes(//@/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])})
+DEBUG:my_stupid_logger:CBurnFS: readbytes: cleaned path: @/etc/fstab/?vfstype=cburn/.{@(spec):@(mntopts.cskvp[shortid])}
+DEBUG:my_stupid_logger:CBurnFS: Fudge booted
+DEBUG:my_stupid_logger:CBurnFS: locating fstab
+DEBUG:my_stupid_logger:CBurnFS: building `host_shortid_map`
+DEBUG:my_stupid_logger:CBurnFS: built `host_shortid_map`
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:my_stupid_logger:debug hello
+DEBUG:my_stupid_logger:debug hello
+DEBUG:there_is_another:hello
+DEBUG:CBurnFS-py:hello
+DEBUG:root:MetaFS: dotenv import complete. fsurn: fs:unset-user-public-id:unset-user-home-name:unset-userfs-url
+DEBUG:root:Redis connection _configured. self.redis: Redis<ConnectionPool<Connection<host=localhost,port=6379,db=0>>>
