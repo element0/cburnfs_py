@@ -1,5 +1,6 @@
 from fs.base import FS
 from fs.osfs import OSFS
+from fs.multifs import MultiFS
 from Dcel import Dcel
 from Dcel import Dcel as D
 from DictFS import DictFS
@@ -30,6 +31,7 @@ class APath(FS):
                   service_class=DictFS,
                   args=['r']
                  )
+    _rootcosm_atdir = Dcel({'@':apathRootCosm}, service_class=DictFS)
         
     def __new__(cls,
                 addr=None,
@@ -74,11 +76,23 @@ class APath(FS):
             # a new instance.
             pass
         
-        ## inherit rootcosm environment from class
-        #  set .cosm (cascading operating system)
+        ## Init new instance
         super().__init__()
-        self.cosm = APath._rootcosm
+        
+        ## Inherit rootcosm environment from class
+        #  set .cosm (cascading operating system)
+        #  .cosm is a Dcel or PyFilesystem2 FS subclass
+        # THE COSM WILL BE OVERLOADED AT THE END OF THIS METHOD
+        # BUT WE NEED THIS TO PROVIDE THE SERVICES FOR INIT
+        if parent is None:
+            self.cosm = APath._rootcosm
+        else:
+            self.cosm = parent.cosm
+        
+        ## Init directory 
         self.branch = dict()
+        
+        ## Set inited flag
         self.__inited = True
         
         ## Beginning Access
@@ -114,9 +128,43 @@ class APath(FS):
         # parent
         self.parent = parent
         
-        # overlay local environment .cosm
-        # TODO
-    
+
+            
+        ## Inherit rootcosm environment from class
+        #  set .cosm (cascading operating system)
+        #  .cosm is a Dcel or PyFilesystem2 FS subclass
+        
+        # - read '@' and '.@' entries
+        # - cascade '@' and '.@' onto .cosm
+        # Quick Hack:
+        # - Make a fs.multifs::MultiFS of:
+        #        parent.target Dcel, write=False
+        #        this.target Dcel, write=True
+        # - Make a fs.subfs::SubFS via opendir() of:
+        #        theAboveResult.opendir('@')
+        # - The resulting SubFS instance will allow writes
+        #   only if '@' exists in the writable layer
+        #   AND WHEN the @ comes into existence writes become available.
+
+        overlay = MultiFS()
+        overlay.add_fs('root',APath._rootcosm_atdir)
+        if parent is not None:
+            overlay.add_fs('parent',parent.target)
+        overlay.add_fs('local',self.target,write=True)
+
+        # TODO: <---- add a virtual directory with stubs for '@' and '.@'
+        #      to make the following hack work in absense of those in true fs.
+        stubhack = Dcel({'@':dict(),'.@':dict()},service_class=DictFS)
+        overlay.add_fs('stubhack',stubhack)
+
+        # allow @ and .@ variants
+        cosm = overlay.opendir('@')
+        dotcosm = overlay.opendir('.@')
+        # give precedence to the @ variant
+        self.cosm = MultiFS()
+        self.cosm.add_fs('dotcosm',dotcosm,write=True)
+        self.cosm.add_fs('cosm',cosm,write=True)
+
     def _reinit(self,
                  addr=None,
                  servicename=None,
@@ -343,8 +391,8 @@ class APath(FS):
     def isdir(self,path=None):
         return self.target.isdir(path)
     
-    def makedir(self,path):
-        return self.target.makedir(path)
+    def makedir(self,path,permissions=None,recreate=False):
+        return self.target.makedir(path,permissions,recreate)
     
     def openbin(self,
             path=None,

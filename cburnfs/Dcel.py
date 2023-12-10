@@ -492,7 +492,7 @@ class Dcel(FS):
         return self.service.setinfo(path,info)
 
     def makedir(self,*args,**kwargs):
-        self.service.makedir(*args,**kwargs)
+        return self.service.makedir(*args,**kwargs)
         
     def remove(self,*args,**kwargs):
         self.service.remove(*args,**kwargs)

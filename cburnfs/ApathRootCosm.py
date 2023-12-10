@@ -25,6 +25,13 @@ apathRootCosm = {
         ]
     },
     'etc': { 
+        'cosmdirname': [
+            '.cosm',
+            '_cosm',
+            '@',
+            '.@',
+            '_@',
+        ],
         'typematch': { 
             'filefmt': {
                 '.*[/]etc[/]fstab': 'fstab'

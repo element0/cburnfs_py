@@ -14,7 +14,15 @@ class MetaFSProxy(FS):
         super().__init__()
 
     def close(self):
-        pass
+        try:
+            self.targetfs.close()
+        except:
+            pass
+        try:
+            metafs.close()
+        except:
+            pass
+        super().close()
 
     def getinfo(self, path, namespaces=None):
         i = self.targetfs.getinfo(path,namespaces).raw
