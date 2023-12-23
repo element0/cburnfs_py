@@ -1,6 +1,7 @@
 from fs.base import FS
 from fs.osfs import OSFS
 from fs.multifs import MultiFS
+from MulticelFS import MulticelFS
 from Dcel import Dcel
 from Dcel import Dcel as D
 from DictFS import DictFS
@@ -29,7 +30,8 @@ class APath(FS):
     # environment.
     _rootcosm = Dcel(address=apathRootCosm,
                   service_class=DictFS,
-                  args=['r']
+                  args=['r'],
+                  writeable=False
                  )
     _rootcosm_atdir = Dcel({'@':apathRootCosm}, service_class=DictFS)
         
@@ -83,7 +85,7 @@ class APath(FS):
         #  set .cosm (cascading operating system)
         #  .cosm is a Dcel or PyFilesystem2 FS subclass
         # THE COSM WILL BE OVERLOADED AT THE END OF THIS METHOD
-        # BUT WE NEED THIS TO PROVIDE THE SERVICES FOR INIT
+        # BUT WE NEED THIS TO PROVIDE THE SERVICES FOR INIT.
         if parent is None:
             self.cosm = APath._rootcosm
         else:
@@ -145,26 +147,30 @@ class APath(FS):
         # - The resulting SubFS instance will allow writes
         #   only if '@' exists in the writable layer
         #   AND WHEN the @ comes into existence writes become available.
-
-        overlay = MultiFS()
-        overlay.add_fs('root',APath._rootcosm_atdir)
-        if parent is not None:
-            overlay.add_fs('parent',parent.target)
-        overlay.add_fs('local',self.target,write=True)
-
-        # TODO: <---- add a virtual directory with stubs for '@' and '.@'
-        #      to make the following hack work in absense of those in true fs.
-        stubhack = Dcel({'@':dict(),'.@':dict()},service_class=DictFS)
-        overlay.add_fs('stubhack',stubhack)
-
-        # allow @ and .@ variants
-        cosm = overlay.opendir('@')
-        dotcosm = overlay.opendir('.@')
-        # give precedence to the @ variant
-        self.cosm = MultiFS()
-        self.cosm.add_fs('dotcosm',dotcosm,write=True)
-        self.cosm.add_fs('cosm',cosm,write=True)
-
+        
+        # V2
+        
+        # Use ApathRootCosm['etc']['cosmdirname']
+        # to customize variants of cosm directory.
+        # Precedence is determined by list order.
+        cosmdirnamelist = self.cosm.listdir('/etc/cosmdirname')
+        
+        if parent is None:
+            parent_cosm = APath._rootcosm
+        else:
+            parent_cosm = parent.cosm
+        
+        if self.target.isdir():
+            cosmstack = [ Dcel(parent_cosm, writeable=False),
+                         *[Dcel(self.target[ea], writeable=False)
+                           for ea in self.target.listdir()
+                           if ea in cosmdirnamelist
+                          ]
+                        ]  
+        else:
+            cosmstack = [ Dcel(parent_cosm, writeable=False) ]
+        self.cosm = Dcel(cosmstack, service_class=MulticelFS)     
+        
     def _reinit(self,
                  addr=None,
                  servicename=None,
@@ -229,9 +235,10 @@ class APath(FS):
         return ap
     
     def close(self):
+        # TODO:
         # need to close _cosm.fs[*]?
         # close DCel?
-        pass
+        super().close()
     
     def detect_service(self,addr):
         if addr is dict:
@@ -383,10 +390,12 @@ class APath(FS):
     # pyfilesystem 'FS' interface ---
     
     def getinfo(self, addr=None, namespaces=None):
-        return self.target.getinfo(addr,namespaces)
+        _apath = self.path_lookup(addr)
+        return _apath.target.getinfo(namespaces)
     
     def listdir(self,path=None):
-        return self.target.listdir(path)
+        _apath = self.path_lookup(path)
+        return _apath.target.listdir()
     
     def isdir(self,path=None):
         return self.target.isdir(path)

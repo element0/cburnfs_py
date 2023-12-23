@@ -22,6 +22,12 @@ class Dcel(FS):
     
     def __new__(cls, arg1=None, *args, **kwargs):
         if type(arg1) is Dcel:
+            if 'writeable' in kwargs:
+                # This allows cloning a new Dcel
+                # from an old one, with a different `writeable`
+                # property.
+                if kwargs['writeable'] != arg1._writeable:
+                    return super().__new__(cls)
             return arg1
         else:
             return super().__new__(cls)
@@ -36,6 +42,7 @@ class Dcel(FS):
                  service_class = None,
                  service_args = None,
                  kwargs = None,
+                 writeable = True,
                 ):
         try:
             """
@@ -51,18 +58,32 @@ class Dcel(FS):
         
         super().__init__()
         self.__inited = True
+        self._writeable = writeable
         
         # If the address is a dcel,
         # use the dcel's value
         # and save the dcel in case
         # it needs to be re-evaluated.
         
+        
+        # NEW of below block
+        # This enables cloning a Dcel but
+        # using new 'writeable' property.
+        if type(address) is Dcel:
+            try:
+                self.address = address.address
+            except:
+                self.address = address.value
+            try:
+                self.service = address.service
+            except:
+                pass
+        
+        # OLD version of above block:
         # The transformation-history ivar
         # generalizes such dependencies.
-        
-        if type(address) is Dcel:
-            self.transformation_history = address
-            address = address.value
+        #    self.transformation_history = address
+        #    address = address.value
             
         if type(address) is slice:
             address = address
@@ -260,6 +281,9 @@ class Dcel(FS):
         
         """
         
+        if self._writeable == False:
+            raise Exception('not writeable')
+        
         # set buffer
         self._value = new_value
         self._dirty = True
@@ -366,7 +390,7 @@ class Dcel(FS):
         """
         # slice
         if type(key) is slice:
-            return Dcel(address=key,service=self)
+            return Dcel(address=key,service=self,writeable=self._writeable)
         # before adding a _dir,
         # does the service see this
         # base address (not the key) as a dir?
@@ -388,7 +412,9 @@ class Dcel(FS):
             if self.service.exists(path):
                 # create Dcel's internal _dir and add child
                 child = Dcel(address=path,
-                             service=self.service)
+                             service=self.service,
+                             writeable=self._writeable
+                            )
                 self._dir = dict()
                 self._dir[key] = child
                 # return the child
@@ -406,11 +432,16 @@ class Dcel(FS):
             basepath = self.address
             if basepath == '/':
                 basepath = ''
-            path = basepath + '/' + key
+            if key == None:
+                path = basepath
+            else:
+                path = basepath + '/' + key
             if self.service.exists(path):
                 # child
                 child = Dcel(address=path,
-                            service=self.service)
+                            service=self.service,
+                             writeable=self._writeable
+                            )
                 self._dir[key] = child
                 return child
             else:
@@ -419,17 +450,23 @@ class Dcel(FS):
             raise TypeError(self._dir)
             
     def __setitem__(self,key,value):
+        if self._writeable == False:
+            raise Exception('not writeable')
         self[key].value = value
+        
+    def keys(self):
+        if self.service:
+            return self.listdir('.')
+            
 
     
     # Info helpers
     
     def abspath(self,path):
-        if path == None:
-            return self.address
-        if path == '/':
-            return path
-        return self.address + '/' + path.lstrip('/')
+        if type(path) is str \
+        and path not in [None, '/']:
+            return self.address + '/' + path.lstrip('/')
+        return self.address
     
     @property
     def hostname(self):
@@ -474,6 +511,8 @@ class Dcel(FS):
             **options):
         # Open a binary file.
         path = self.abspath(path)
+        if self._writeable == False:
+            mode='r'
         return self.service.openbin(
             path,
             mode,
@@ -488,20 +527,30 @@ class Dcel(FS):
         return self.service.readtext(path)
     
     def setinfo(self,path,info):
+        if self._writeable == False:
+            raise Exception('not writeable')
         path = self.abspath(path)
         return self.service.setinfo(path,info)
 
     def makedir(self,*args,**kwargs):
+        if self._writeable == False:
+            raise Exception('not writeable')
         return self.service.makedir(*args,**kwargs)
         
     def remove(self,*args,**kwargs):
+        if self._writeable == False:
+            raise Exception('not writeable')
         self.service.remove(*args,**kwargs)
         
     def removedir(self,*args,**kwargs):
+        if self._writeable == False:
+            raise Exception('not writeable')
         self.service.removedir(*args,**kwargs)
         
     def writetext(self, path=None, contents='', encoding='utf-8',
                   errors=None, newline=''):
+        if self._writeable == False:
+            raise Exception('not writeable')
         path = self.abspath(path)
         self.service.writetext(path,contents,encoding,errors,newline)
 
