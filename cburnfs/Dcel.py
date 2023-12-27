@@ -462,11 +462,20 @@ class Dcel(FS):
     
     # Info helpers
     
-    def abspath(self,path):
-        if type(path) is str \
-        and path not in [None, '/']:
-            return self.address + '/' + path.lstrip('/')
-        return self.address
+    ## Absolute path.
+    #  Be _very_ careful modifying this.
+    #  Because there are potentially different object
+    #  types which can be used for the address,
+    #  _especially_ `slice` objects, we can't really modify
+    #  anything but 'pathlike' objects, which have
+    #  string representations.
+    def abspath(self, addr):
+        if (type(addr) is str
+            and addr != '/'):
+                return self.address + '/' + addr.lstrip('/')
+        if addr != None:
+            return addr
+        return ''
     
     @property
     def hostname(self):
@@ -502,7 +511,10 @@ class Dcel(FS):
     
     def isdir(self,path=None):
         path = self.abspath(path)
-        return self.service.isdir(path)
+        if hasattr(self, 'service'):
+            return self.service.isdir(path)
+        else:
+            return False
     
     def openbin(self,
             path=None,
