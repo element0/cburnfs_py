@@ -9,12 +9,15 @@ from fs.errors import FileExpected, DirectoryExpected
 from io import BytesIO
 from Dcel import Dcel
 
-DirectoryTypes = (dict,list)
+DirectoryTypes = (dict,list,Dcel)
 ByteableTypes = (bytes,str)
+FlexibleTypes = (Dcel,)
 WriteModes = ('w','a')
 
 class DictFS(FS):
     def __init__(self,fsdict,mode='a'):
+        if(type(fsdict) is str):
+            fsdict = { fsdict: fsdict }
         self.fsdict = fsdict
         self._mode = mode
         super().__init__()
@@ -29,33 +32,38 @@ class DictFS(FS):
                  ):
         if target is None:
             target = self.fsdict
-            if (not type(target) is dict):
-                # UPDATE 8/7/2022 - raygan - Return fsdict without lookup.
-                # This enables Fudge glob where fu/'*' needs to return a list.
-                return target
-                # raise TypeError(f"DictFS internal 'fsdict' type must 'dict', not {type(target)}.")
             
+        if (not type(target) is dict):
+            # UPDATE 8/7/2022 - raygan - Return fsdict without lookup.
+            # This enables Fudge glob where fu/'*' needs to return a list.
+            if (type(target) is Dcel
+                or str(type(target)) == "<class '__main__.Dcel'>"):
+                return target._pathwalk(path)
+            else:
+                raise TypeError(f"DictFS internal 'fsdict' type must 'dict' or 'Dcel' not {type(target)}.")
+        
         if path in (None,"",".","/"):
             return target
         
         path = path.strip("/")
 
-        try:
-            seg,nextpath = path.split('/',1)
-        except ValueError:
+        split_result = path.split('/',1)
+        if len(split_result) == 2:
+            seg,nextpath = split_result
+        else:
+            seg = split_result[0]
             nextpath = None
-            seg = path
 
         # lookup seg within target.
         # target may be a Dict or Dcel
         if not seg in target:
             raise ResourceNotFound(path)
-            return None
 
         nexttarget = target[seg]
 
-        if type(nexttarget) is dict\
-        and not nextpath is None:
+        if ((type(nexttarget) is dict
+            or type(nexttarget) is Dcel)
+            and not nextpath is None):
             return self._pathwalk(nextpath,
                                   nexttarget)
         return nexttarget
@@ -66,12 +74,7 @@ class DictFS(FS):
     ####################
     
     def getinfo(self, path, namespaces=None):
-        target = self._pathwalk(path)
-        
-        if type(target) in DirectoryTypes:
-            is_dir = True
-        else:
-            is_dir = False
+        is_dir = self.isdir(path)
             
         i = Info({"basic":{
             "name": basename(path.strip('/')),
@@ -80,16 +83,43 @@ class DictFS(FS):
         
         if namespaces != None \
         and "dcel" in namespaces:
+            target = self._pathwalk(path)
             i.raw["dcel"] = {"value":
                              target
                             }
         return i
     
     def listdir(self, path):
+        if self.isdir(path):
+            target = self._pathwalk(path)
+            if type(target) != type(None):
+                try:
+                    # This might fail if Dcel::iter() doesn't work.
+                    res = list(target)
+                except:
+                    res = None
+                if type(res) == type(None):
+                    return []
+                return list(target)
+            else:
+                return []
+        raise DirectoryExpected(path)
+    
+    def isdir(self, path='/'):
         target = self._pathwalk(path)
-        if type(target) in DirectoryTypes:
-            return list(target)
-        return list()
+        _type = type(target)
+        
+        if _type in DirectoryTypes:
+            return True
+        if _type in FlexibleTypes:
+            return target.isdir(path)
+            # short circuited
+            _value = target.value
+            if (hasattr(_value,'__getitem__')
+               and not issubclass(_type,str)):
+                return True
+        else:
+            return False
     
     def makedir(self, path, permissions=None, recreate=False):
         
@@ -210,7 +240,6 @@ class DictFS(FS):
             entryname = basename(path)
             target = self._pathwalk(parpath)
         except:
-            print("DictFS.writetext() error parpath, entryname, target=self._pathwalk(parpath)")
             return
         try:
             # set target
@@ -220,8 +249,6 @@ class DictFS(FS):
             else:
                 target[entryname] = contents
         except:
-            print("DictFS.writetext() error trying to set child")
-            print(f"DictFS::writetext(): parpath: {parpath}, entryname: {entryname}, target: {repr(target)}")
             return
     
     ####################

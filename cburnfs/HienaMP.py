@@ -14,6 +14,10 @@ def hiena_mp(g:dict, text:Dcel, rulename="$__start__"):
     
     assert(type(text) is Dcel)
     
+    if (type(g) is Dcel
+        and type(g.value) is dict):
+        g = g.value
+    
     # This begins its life as a list()
     # it collects the matches for a repeating grammar rule.
     

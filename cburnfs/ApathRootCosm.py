@@ -3,13 +3,15 @@ from DictFS import DictFS
 from HienaMP import hiena_mp
 from MulticelFS import MulticelFS
 from CBMetaFS import CBMetaFS
+from CloudKernel import CloudKernel
 from fstab_hg import fstab_hg
 from cskvp_hg import cskvp_hg
 from urlparse_wrapper import urlparse_wrapper
 # from fs_s3fs import S3FS # removed dependency for simplicity
 from fs import open_fs
 
-def say_hello():
+# added *args, and **kwargs catch-alls
+def say_hello(*args, **kwargs):
     print("hello.")
     return "hello there."
 
@@ -46,6 +48,7 @@ apathRootCosm = {
             }
         }
     },
+    'kernel': CloudKernel(),
     'services': {
         'file': BlackstrapFS,
         'dict': DictFS,

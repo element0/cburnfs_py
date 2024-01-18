@@ -5,6 +5,7 @@ from MulticelFS import MulticelFS
 from Dcel import Dcel
 from Dcel import Dcel as D
 from DictFS import DictFS
+from FormulaFS import FormulaFS
 from ApathRootCosm import apathRootCosm
 from fs.errors import ResourceNotFound
 from urllib.parse import urlparse
@@ -325,7 +326,10 @@ class APath(FS):
             # lookup command dcel
             _p = p.removeprefix('.cosm/')
             pathname = _p+'/'+cmdname
-            cmdcel = self.cosm.path_lookup(pathname)
+            try:
+                cmdcel = self.cosm.path_lookup(pathname)
+            except:
+                continue
             if not cmdcel is None:
                 break
         return cmdcel
@@ -371,14 +375,29 @@ class APath(FS):
             service_cls = self.detect_service(rtntype)
         
         # create dcel with formula
-        dc = Dcel( formula=fn,
-                   args=args,
-                   kwargs=kwargs,
-                 )
+        # Using 2024 January FormulaFS
+        
+        dc = Dcel({'fn':fn,
+                   'args':args,
+                   'kwargs':kwargs
+                  },
+                 service_class=FormulaFS)
+        
+        # older style formula Dcel
+        # requires internal formula-aware logic
+        # inside the Dcel object, which is hard to maintain.
+        #dc = Dcel( formula=fn,
+         #          args=args,
+          #         kwargs=kwargs,
+           #      )
+        
         # create service wrapper
-        _dc = Dcel(address=dc, 
+        # Q: do we need this?
+        # A: Yes. The Dcel FS API (ex. `listdir()`)
+        #    used by APath requires it.
+        _dc = Dcel(address=dc.value, 
                    service_class=service_cls)
-
+        
         # wrap in APath
         res = APath(_dc, parent=self)
 

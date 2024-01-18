@@ -39,17 +39,33 @@ class Fudge(APathWrapper):
         super().__init__(apath)
         
     def _getdir(self):
+        """
+        Get a directory representing the underlying target.
+        
+        If the underlying target responds to `.isdir()`
+        then return self. Otherwise, "fudge" the target
+        into a directory if possible. The result should
+        respond to `.isdir()`. Otherwise, fail.
+        """
         if self._apath.isdir():
             return self
         else:
             try:
                 addr = self._apath.target.address
                 typename = basename(addr)
+                # __getattr__ overriden by class
+                # performs a transformation via APath
+                # root cosm if a type exists.
                 res = self.__getattr__(typename)
                 if res._apath.isdir():
                     return res
             except:
-                raise
+                pass
+            try:
+                if res._apath.target.isdir():
+                    return self
+            except:
+                pass
         raise NotADirectoryError
     
     def __getitem__(self, item: str):
@@ -111,7 +127,7 @@ class Fudge(APathWrapper):
         #2. mutate the apath
         
         #typefn = self._apath.cosm['types'][typename]
-        mutation = self._apath.command(dict, typename, ~(self._apath.target))
+        mutation = self._apath.command(dict, typename, self._apath.target)
         return Fudge(mutation)
     
     def __call__(self, *args, **kwargs):

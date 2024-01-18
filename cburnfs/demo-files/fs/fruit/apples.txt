@@ -1,1 +1,1 @@
-red
+Some are red, some are green.
